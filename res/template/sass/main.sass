@@ -1,1 +1,178 @@
+.page
+  display: flex
+  flex-flow: column nowrap
+  align-items: center
+  justify-content: flex-start
+  margin: 0
+  width: 100vw
+  background-color: #ffffff
+  color: #000000
+  font-family: 'Roboto', sans-serif
+  font-weight: 400
 
+::selection
+  background-color: #000000
+  color: #ffffff
+
+.header
+  display: flex
+  flex-flow: row nowrap
+  align-items: center
+  justify-content: space-between
+  width: 80%
+  margin: 1rem 0
+
+  &__title
+    font-family: 'Oswald', sans-serif
+    font-size: 2.5rem
+    font-weight: 700
+    text-transform: uppercase
+    margin: 0
+
+  &__button
+    border: none
+    background: none
+    height: 2.5rem
+    width: 2.5rem
+    padding: 0
+    opacity: .375
+    transition: .25s
+
+    &:hover
+      opacity: 1
+      transition: .25s
+
+.main
+  display: flex
+  flex-flow: column nowrap
+  align-items: flex-start
+  justify-content: flex-start
+  width: 80%
+
+.new-task
+  display: grid
+  grid-template-columns: 8fr 2fr
+  grid-template-areas: "label label" "input submit"
+  width: 50%
+  min-width: 400px
+
+  &__label
+    grid-area: label
+    font-weight: 700
+    font-size: 1.5rem
+    margin-bottom: 1vh
+
+  &__input
+    grid-area: input
+    font-family: 'Roboto', sans-serif
+    font-weight: 300
+    font-size: 1rem
+
+  &__submit
+    grid-area: submit
+    border: none
+    background: none
+    font-size: 2.5rem
+    height: 2.5rem
+    width: 2.5rem
+    margin: 0 auto
+    padding: 0
+    border-radius: 50%
+    transition: .25s
+
+    &:hover
+      color: #ffffff
+      background-color: #000000
+      transition: .25s
+
+.kanban
+  display: flex
+  flex-flow: row nowrap
+  align-items: flex-start
+  align-self: center
+  justify-content: space-between
+  width: 60vw
+  min-width: 700px
+  margin-top: 5vh
+
+.tasks
+  display: flex
+  flex-flow: column nowrap
+  align-items: center
+  justify-content: flex-start
+  border: 3px solid #000000
+  border-radius: 10px
+  padding: 2.5%
+  width: 180px / 700px * 100%
+  //background-color: #000000
+  //opacity: .375
+
+  &_plan .task-card__header,
+  &_plan .task-card__info,
+  &_plan .control-panel__button:last-child,
+  &_in-work .task-card__header:nth-of-type(2),
+  &_in-work .task-card__info:nth-of-type(2),
+  &_in-work .control-panel__button:last-child,
+  &_ready .control-panel__button:nth-child(2)
+    display: none
+
+  &__title
+    margin: 0
+    font-weight: 700
+    text-transform: uppercase
+    font-size: 1.5rem
+
+.task-card
+  display: flex
+  flex-flow: column nowrap
+  align-items: flex-start
+  align-self: flex-start
+  justify-content: flex-start
+  background-color: rgb(221, 221, 221)
+  width: 100%
+  padding: 5%
+  border-radius: 10px
+  box-sizing: border-box
+  margin-top: 2.5vh
+
+  &__title
+    margin: 0
+    font-weight: 700
+    font-size: 1.375rem
+
+  &__description
+    margin: 1vh 0 0 0
+    font-size: 1.125rem
+
+  &__header
+    margin: 1.25vh 0 0 0
+    font-weight: 500
+    font-size: 1.25rem
+
+  &__info
+    font-weight: 300
+    font-size: .875rem
+
+.control-panel
+  display: flex
+  flex-flow: row nowrap
+  align-items: center
+  align-self: flex-end
+  justify-content: flex-end
+  margin-top: 1.25vh
+
+  &__button
+    border: none
+    background: none
+    font-size: 1.5rem
+    height: 2.125rem
+    width: 2.125rem
+    margin-left: .5vw
+    padding: 0
+    border-radius: 50%
+    transition: .25s
+
+    &:hover
+      color: rgb(221, 221, 221)
+      background-color: #000000
+      transition: .25s

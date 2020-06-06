@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@300;400;500;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="css/main.css">
+
+    <title>Канбан-доска на Vue.js</title>
+</head>
+<body class="page">
+<header class="header">
+    <h1 class="header__title">Кабан</h1>
+
+    <!--    button that changes theme   -->
+    <button class="header__button material-icons">brightness_medium</button>
+</header>
+
+<main class="main">
+    <form action="" method="post" class="new-task">
+        <label for="new-task-description" class="new-task__label">Добавить новую задачу</label>
+        <input type="text" name="new-task-description" id="new-task-description" class="new-task__input" required
+               placeholder="Описание">
+        <input type="submit" class="new-task__submit material-icons" value="add">
+    </form>
+
+    <article class="kanban">
+
+        <!--        "task" is a generic style for all columns   -->
+        <section class="tasks tasks_plan">
+            <h1 class="tasks__title">План (1)</h1>
+
+            <!--            generic structure of a task card, content specifies by ancestor ("tasks_plan", ...)   -->
+            <div class="task-card">
+                <h1 class="task-card__title">Задача №1</h1>
+                <p class="task-card__description">Лорем ипсум</p>
+                <h2 class="task-card__header">Дата и время начала</h2>
+                <span class="task-card__info">06.06.2020 14:40:00</span>
+                <h2 class="task-card__header">Ушло времени</h2>
+                <span class="task-card__info">1 день 2 часа 3 минуты</span>
+                <h2 class="task-card__header">Ответственный</h2>
+                <span class="task-card__info">Le Gunga </span>
+                <div class="control-panel">
+                    <button class="control-panel__button material-icons">create</button>
+                    <button class="control-panel__button material-icons">done</button>
+                    <button class="control-panel__button material-icons">clear</button>
+                </div>
+            </div>
+        </section>
+        <section class="tasks tasks_in-work">
+            <h1 class="tasks__title">В работе (1)</h1>
+
+            <div class="task-card">
+                <h1 class="task-card__title">Задача №1</h1>
+                <p class="task-card__description">Лорем ипсум</p>
+                <h2 class="task-card__header">Дата и время начала</h2>
+                <span class="task-card__info">06.06.2020 14:40:00</span>
+                <h2 class="task-card__header">Ушло времени</h2>
+                <span class="task-card__info">1 день 2 часа 3 минуты</span>
+                <h2 class="task-card__header">Ответственный</h2>
+                <span class="task-card__info">Le Gunga </span>
+                <div class="control-panel">
+                    <button class="control-panel__button material-icons">create</button>
+                    <button class="control-panel__button material-icons">done</button>
+                    <button class="control-panel__button material-icons">clear</button>
+                </div>
+            </div>
+        </section>
+        <section class="tasks tasks_ready">
+            <h1 class="tasks__title">Готово (1)</h1>
+
+            <div class="task-card">
+                <h1 class="task-card__title">Задача №1</h1>
+                <p class="task-card__description">Лорем ипсум</p>
+                <h2 class="task-card__header">Дата и время начала</h2>
+                <span class="task-card__info">06.06.2020 14:40:00</span>
+                <h2 class="task-card__header">Ушло времени</h2>
+                <span class="task-card__info">1 день 2 часа 3 минуты</span>
+                <h2 class="task-card__header">Ответственный</h2>
+                <span class="task-card__info">Le Gunga </span>
+                <div class="control-panel">
+                    <button class="control-panel__button material-icons">create</button>
+                    <button class="control-panel__button material-icons">done</button>
+                    <button class="control-panel__button material-icons">clear</button>
+                </div>
+            </div>
+        </section>
+    </article>
+</main>
+</body>
+</html>
