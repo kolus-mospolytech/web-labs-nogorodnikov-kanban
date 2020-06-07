@@ -191,7 +191,6 @@
   width: 100%;
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.125);
-  z-index: 50;
 }
 
 .redact {
@@ -204,7 +203,6 @@
   border: 3px solid #000000;
   border-radius: 10px;
   padding: 2.5%;
-  z-index: 100;
 }
 .redact__button {
   align-self: flex-end;
