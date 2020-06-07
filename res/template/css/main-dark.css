@@ -5,15 +5,16 @@
   justify-content: flex-start;
   margin: 0;
   width: 100vw;
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #000000;
+  color: #ffffff;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
+  transition: 0.25s;
 }
 
 ::selection {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 .header {
@@ -39,6 +40,7 @@
   padding: 0;
   opacity: 0.375;
   transition: 0.25s;
+  color: #ffffff;
 }
 .header__button:hover {
   opacity: 1;
@@ -71,7 +73,7 @@
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 1rem;
-  border: 2px solid #000000;
+  border: 2px solid #ffffff;
   border-radius: 5px;
   padding: 2px;
 }
@@ -85,11 +87,12 @@
   margin: 0 auto;
   padding: 0;
   border-radius: 50%;
+  color: #ffffff;
   transition: 0.25s;
 }
 .new-task__submit:hover {
-  color: #ffffff;
-  background-color: #000000;
+  color: #000000;
+  background-color: #ffffff;
   transition: 0.25s;
 }
 
@@ -109,7 +112,7 @@
   flex-flow: column nowrap;
   align-items: center;
   justify-content: flex-start;
-  border: 3px solid #000000;
+  border: 3px solid #ffffff;
   border-radius: 10px;
   padding: 2.5%;
   width: 25.7142857143%;
@@ -130,7 +133,7 @@
   align-items: flex-start;
   align-self: flex-start;
   justify-content: flex-start;
-  background-color: #dddddd;
+  background-color: #202020;
   width: 100%;
   padding: 5%;
   border-radius: 10px;
@@ -173,11 +176,12 @@
   margin-left: 0.5vw;
   padding: 0;
   border-radius: 50%;
+  color: #ffffff;
   transition: 0.25s;
 }
 .control-panel__button:hover {
-  color: #dddddd;
-  background-color: #000000;
+  color: #202020;
+  background-color: #ffffff;
   transition: 0.25s;
 }
 
@@ -189,7 +193,7 @@
   height: 100vh;
   width: 100%;
   box-sizing: border-box;
-  background-color: rgba(0, 0, 0, 0.125);
+  background-color: rgba(255, 255, 255, 0.125);
 }
 
 .redact {
@@ -198,8 +202,8 @@
   align-items: flex-start;
   justify-content: flex-start;
   width: 60%;
-  background-color: #ffffff;
-  border: 3px solid #000000;
+  background-color: #000000;
+  border: 3px solid #ffffff;
   border-radius: 10px;
   padding: 2.5%;
 }
@@ -212,11 +216,12 @@
   width: 2.125rem;
   padding: 0;
   border-radius: 50%;
+  color: #ffffff;
   transition: 0.25s;
 }
 .redact__button:hover {
-  color: #ffffff;
-  background-color: #000000;
+  color: #000000;
+  background-color: #ffffff;
   transition: 0.25s;
 }
 .redact__label {
@@ -243,12 +248,13 @@
   padding: 5px;
   align-self: center;
   border-radius: 5px;
+  color: #ffffff;
   transition: 0.25s;
 }
 .redact__submit:hover {
-  color: #ffffff;
-  background-color: #000000;
+  color: #000000;
+  background-color: #ffffff;
   transition: 0.25s;
 }
 
-/*# sourceMappingURL=main.css.map */
+/*# sourceMappingURL=main-dark.css.map */

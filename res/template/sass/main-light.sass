@@ -9,6 +9,8 @@
   color: #000000
   font-family: 'Roboto', sans-serif
   font-weight: 400
+  transition: .25s
+
 
 ::selection
   background-color: #000000
@@ -67,6 +69,9 @@
     font-family: 'Roboto', sans-serif
     font-weight: 300
     font-size: 1rem
+    border: 2px solid #000000
+    border-radius: 5px
+    padding: 2px
 
   &__submit
     grid-area: submit
@@ -104,8 +109,6 @@
   border-radius: 10px
   padding: 2.5%
   width: 180px / 700px * 100%
-  //background-color: #000000
-  //opacity: .375
 
   &_plan .task-card__header,
   &_plan .task-card__info,
@@ -174,5 +177,75 @@
 
     &:hover
       color: rgb(221, 221, 221)
+      background-color: #000000
+      transition: .25s
+
+.modal
+  display: none
+  position: absolute
+  align-items: center
+  justify-content: center
+  height: 100vh
+  width: 100%
+  box-sizing: border-box
+  background-color: rgba(0, 0, 0, .125)
+  z-index: 50
+
+.redact
+  display: flex
+  flex-flow: column nowrap
+  align-items: flex-start
+  justify-content: flex-start
+  width: 60%
+  background-color: #ffffff
+  border: 3px solid #000000
+  border-radius: 10px
+  padding: 2.5%
+  z-index: 100
+
+  &__button
+    align-self: flex-end
+    border: none
+    background: none
+    font-size: 1.5rem
+    height: 2.125rem
+    width: 2.125rem
+    padding: 0
+    border-radius: 50%
+    transition: .25s
+
+    &:hover
+      color: #ffffff
+      background-color: #000000
+      transition: .25s
+
+  &__label
+    font-weight: 700
+    font-size: 1.5rem
+    margin-bottom: 1vh
+
+  &__input
+    font-family: 'Roboto', sans-serif
+    font-weight: 300
+    font-size: 1rem
+    margin-bottom: 2.5vh
+    width: 210 / 558 * 100%
+    height: 23 / 490 * 100%
+    border: 2px solid #000000
+    border-radius: 5px
+    padding: 2px
+
+  &__submit
+    border: none
+    background: none
+    font-size: 1.5rem
+    height: 2.125rem
+    padding: 5px
+    align-self: center
+    border-radius: 5px
+    transition: .25s
+
+    &:hover
+      color: #ffffff
       background-color: #000000
       transition: .25s
