@@ -105,7 +105,7 @@
   margin-top: 5vh;
 }
 
-.tasks {
+.board {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -115,10 +115,10 @@
   padding: 2.5%;
   width: 25.7142857143%;
 }
-.tasks_plan .task-card__header, .tasks_plan .task-card__info, .tasks_plan .control-panel__button:last-child, .tasks_in-work .task-card__header:nth-of-type(2), .tasks_in-work .task-card__info:nth-of-type(2), .tasks_in-work .control-panel__button:last-child, .tasks_ready .control-panel__button:nth-child(2) {
+.board_plan .task-card__header, .board_plan .task-card__info, .board_plan .control-panel__button:last-child, .board_in-work .task-card__header:nth-of-type(2), .board_in-work .task-card__info:nth-of-type(2), .board_in-work .control-panel__button:last-child, .board_ready .control-panel__button:nth-child(2) {
   display: none;
 }
-.tasks__title {
+.board__title {
   margin: 0;
   font-weight: 700;
   text-transform: uppercase;

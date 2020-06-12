@@ -100,15 +100,15 @@
   min-width: 700px
   margin-top: 5vh
 
-.tasks
+.board
   display: flex
   flex-flow: column nowrap
   align-items: center
   justify-content: flex-start
   border: 3px solid #000000
   border-radius: 10px
-  padding: 2.5%
-  width: 180px / 700px * 100%
+  padding-top: 2.5%
+  width: 220px / 700px * 100%
 
   &_plan .task-card__header,
   &_plan .task-card__info,
@@ -124,6 +124,15 @@
     font-weight: 700
     text-transform: uppercase
     font-size: 1.5rem
+
+.cards
+  display: flex
+  flex-flow: column nowrap
+  align-items: center
+  justify-content: flex-start
+  width: 90%
+  min-height: 20vh
+  padding: 0 5% 2.5vh 5%
 
 .task-card
   display: flex

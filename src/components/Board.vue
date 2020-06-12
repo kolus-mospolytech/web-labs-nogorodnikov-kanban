@@ -1,8 +1,7 @@
 <template>
-    <section :id="id" @dragover.prevent @drop.prevent="drop" class="tasks">
-        <h1 class="tasks__title">План (1)</h1>
+    <div :id="id" @dragover.prevent @drop.prevent="drop" class="cards">
         <slot/>
-    </section>
+    </div>
 </template>
 
 <script>

@@ -105,24 +105,34 @@
   margin-top: 5vh;
 }
 
-.tasks {
+.board {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: flex-start;
   border: 3px solid #000000;
   border-radius: 10px;
-  padding: 2.5%;
-  width: 25.7142857143%;
+  padding-top: 2.5%;
+  width: 31.4285714286%;
 }
-.tasks_plan .task-card__header, .tasks_plan .task-card__info, .tasks_plan .control-panel__button:last-child, .tasks_in-work .task-card__header:nth-of-type(2), .tasks_in-work .task-card__info:nth-of-type(2), .tasks_in-work .control-panel__button:last-child, .tasks_ready .control-panel__button:nth-child(2) {
+.board_plan .task-card__header, .board_plan .task-card__info, .board_plan .control-panel__button:last-child, .board_in-work .task-card__header:nth-of-type(2), .board_in-work .task-card__info:nth-of-type(2), .board_in-work .control-panel__button:last-child, .board_ready .control-panel__button:nth-child(2) {
   display: none;
 }
-.tasks__title {
+.board__title {
   margin: 0;
   font-weight: 700;
   text-transform: uppercase;
   font-size: 1.5rem;
+}
+
+.cards {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90%;
+  min-height: 20vh;
+  padding: 0 5% 2.5vh 5%;
 }
 
 .task-card {

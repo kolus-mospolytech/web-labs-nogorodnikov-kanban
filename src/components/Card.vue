@@ -1,41 +1,60 @@
 <template>
-    <div :draggable="draggable" :id="id" @dragover.stop @dragstart="dragStart" class="task-card">
-        <h1 class="task-card__title">Задача №</h1>
-        <p class="task-card__description"></p>
+    <div :id="id" @dragover.stop @dragstart="dragStart" class="task-card" draggable="true">
+        <h1 class="task-card__title">Задача №{{id}}</h1>
+        <p class="task-card__description">{{cardsData[id - 1].cardDescription}}</p>
         <h2 class="task-card__header">Дата и время начала</h2>
-        <span class="task-card__info"></span>
+        <span class="task-card__info">{{cardsData[id - 1].startTime}}</span>
         <h2 class="task-card__header">Ушло времени</h2>
-        <span class="task-card__info"></span>
+        <span class="task-card__info">{{cardsData[id - 1].durationTime}}</span>
         <h2 class="task-card__header">Ответственный</h2>
-        <span class="task-card__info"></span>
+        <span class="task-card__info">{{cardsData[id - 1].executor}}</span>
         <div class="control-panel">
             <button class="control-panel__button material-icons" onclick="PopUpShow()">create
             </button>
-            <button class="control-panel__button material-icons">done</button>
-            <button class="control-panel__button material-icons">clear</button>
+            <button class="control-panel__button material-icons" v-on:click="changeBoard(id)">done</button>
+            <button class="control-panel__button material-icons" v-on:click="removeCard(id)">clear</button>
         </div>
-        <slot/>
     </div>
 </template>
 
 <script>
     export default {
         name: "Card",
-        props: ['id', 'draggable'],
+        props: ['id'],
+        data: function () {
+            return {
+                cardsData: [
+                    {
+                        cardDescription: "gunga",
+                        startTime: "",
+                        durationTime: "",
+                        executor: "Le gunga"
+                    },
+                    {
+                        cardDescription: "ginga",
+                        startTime: "",
+                        durationTime: "",
+                        executor: "Le ginga"
+                    },
+                ]
+            };
+        },
         methods: {
-            dragStart: e => {
-                const target = e.target;
+            dragStart: event => {
+                const target = event.target;
 
-                e.dataTransfer.setData('card_id', target.id);
+                event.dataTransfer.setData('card_id', target.id);
+            },
+            changeBoard: function (card_id) {
+                const card = document.getElementById(card_id);
+                const board_id = card.parentNode.id;
+                const board_num = board_id.slice(board_id.length - 1)
 
-                setTimeout(() => {
-                    target.style.display = "none";
-                }, 0);
+                document.getElementById(board_id.slice(0, - 1) + (parseInt(board_num) + 1)).appendChild(card);
+            },
+            removeCard: function (card_id) {
+                document.getElementById(card_id).remove();
             }
         }
     }
 </script>
-
-<style scoped>
-
-</style>
