@@ -1,15 +1,47 @@
 <template>
-    <form action="" class="new-task">
-        <label class="new-task__label" for="new-task-description">Добавить новую задачу</label>
-        <input class="new-task__input" id="new-task-description" name="new-task-description"
+    <form @submit.prevent="addCard" action="" class="new-task">
+        <label class="new-task__label"
+               for="new-task-description">
+            Добавить новую задачу
+        </label>
+        <input class="new-task__input"
+               id="new-task-description"
+               name="new-task-description"
                placeholder="Описание"
-               required type="text">
+               required
+               type="text" v-model="card_description">
         <input class="new-task__submit material-icons" type="submit" value="add">
     </form>
 </template>
 
 <script>
+    import Card from "@/components/Card";
+    import Vue from 'vue';
+
+    let made_cards = 3;
+
     export default {
-        name: "Add"
+        name: "Add",
+        data: function () {
+            return {
+                card_description: ""
+            }
+        },
+        methods: {
+            addCard: function () {
+                made_cards++;
+                const componentClass = Vue.extend(Card);
+                const instance = new componentClass({
+                    propsData: {
+                        id: made_cards.toString(),
+                        cardDescription: this.card_description,
+                        executor: 'Я'
+                    }
+                });
+                instance.$mount()
+                document.getElementById('board-1').appendChild(instance.$el)
+                this.card_description = ""
+            }
+        },
     }
 </script>

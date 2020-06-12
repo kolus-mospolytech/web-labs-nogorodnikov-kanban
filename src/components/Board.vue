@@ -1,7 +1,11 @@
 <template>
-    <div :id="id" @dragover.prevent @drop.prevent="drop" class="cards">
-        <slot/>
-    </div>
+<!--    <div>-->
+<!--        <h1 class="board__title">План {{count('board-1')}}</h1>-->
+        <div :id="id" @dragover.prevent @drop.prevent="drop" class="cards">
+            <slot/>
+        </div>
+<!--    </div>-->
+
 </template>
 
 <script>

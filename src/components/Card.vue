@@ -1,13 +1,13 @@
 <template>
     <div :id="id" @dragover.stop @dragstart="dragStart" class="task-card" draggable="true">
         <h1 class="task-card__title">Задача №{{id}}</h1>
-        <p class="task-card__description">{{cardsData[id - 1].cardDescription}}</p>
+        <p class="task-card__description">{{cardDescription}}</p>
         <h2 class="task-card__header">Дата и время начала</h2>
-        <span class="task-card__info">{{cardsData[id - 1].startTime}}</span>
+        <span class="task-card__info">{{startTime}}</span>
         <h2 class="task-card__header">Ушло времени</h2>
-        <span class="task-card__info">{{cardsData[id - 1].durationTime}}</span>
+        <span class="task-card__info">{{durationTime}}</span>
         <h2 class="task-card__header">Ответственный</h2>
-        <span class="task-card__info">{{cardsData[id - 1].executor}}</span>
+        <span class="task-card__info">{{executor}}</span>
         <div class="control-panel">
             <button class="control-panel__button material-icons" onclick="PopUpShow()">create
             </button>
@@ -20,7 +20,7 @@
 <script>
     export default {
         name: "Card",
-        props: ['id'],
+        props: ['id', 'cardDescription', 'startTime', 'durationTime', 'executor'],
         data: function () {
             return {
                 cardsData: [
