@@ -22,6 +22,7 @@
                 card.style.display = "flex";
                 e.target.appendChild(card);
 
+                eventBus.$emit('needTime')
                 eventBus.$emit('makeCount')
             }
         }
