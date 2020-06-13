@@ -9,37 +9,69 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
     <script>
-        document.documentElement.style.setProperty('--animate-duration', '.25s');
+        document.documentElement.style.setProperty('--animate-duration', '.25s')
 
-        function PopUpShow() {
-            const animation = 'animate__animated animate__fadeIn';
-            const animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd onaimationend animationend';
+        function PopUpShow(board_id, description_value, executor_value, start_time_value, finish_time_value) {
+            const animation = 'animate__animated animate__fadeIn'
+            const animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd onaimationend animationend'
+            const description = $('#task-description')
+            const executor = $('#in-charge')
+            const startTime = $('#task-start')
+            const finishTime = $('#task-finish')
+
+            console.log(board_id, description_value, executor_value, start_time_value, finish_time_value)
+
+            switch (board_id) {
+                case 'board-1':
+                    description
+                        .attr('value', description_value)
+                    executor
+                        .attr('required', false)
+                        .attr('disabled', true)
+                        .css('opacity', '.25')
+                    startTime.attr('required', false).attr('disabled', true).css('opacity', '.25')
+                    finishTime.attr('required', false).attr('disabled', true).css('opacity', '.25')
+                    break
+                case 'board-2':
+                    executor
+                        .attr('value', executor_value)
+                        .attr('required', true).attr('disabled', false).css('opacity', '1')
+                    startTime.attr('required', true).attr('disabled', false).css('opacity', '1')
+                    finishTime.attr('required', false).attr('disabled', true).css('opacity', '.25')
+                    break
+                case 'board-3':
+                    executor.attr('required', true).attr('disabled', false).css('opacity', '1')
+                    startTime.attr('required', true).attr('disabled', false).css('opacity', '1')
+                    finishTime.attr('required', true).attr('disabled', false).css('opacity', '1')
+                    break
+            }
 
             $('.modal').css("display", "flex").addClass(animation).one(animationEnd, function () {
-                $('.modal').removeClass(animation);
-            });
+                $('.modal').removeClass(animation)
+            })
+
         }
 
         function PopUpHide() {
-            const animation = 'animate__animated animate__fadeOut';
-            const animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd onaimationend animationend';
+            const animation = 'animate__animated animate__fadeOut'
+            const animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd onaimationend animationend'
 
             $('.modal').addClass(animation).one(animationEnd, function () {
-                $('.modal').removeClass(animation).css("display", "none");
-            });
+                $('.modal').removeClass(animation).css("display", "none")
+            })
         }
 
         let i = 0;
 
         function ChangeTheme() {
-            const light = "css/main-light.css";
-            const dark = "css/main-dark.css";
+            const light = "css/main-light.css"
+            const dark = "css/main-dark.css"
 
-            i++;
+            i++
             if (i % 2 === 1) {
-                document.getElementById('page-style').setAttribute("href", dark);
+                document.getElementById('page-style').setAttribute("href", dark)
             } else {
-                document.getElementById('page-style').setAttribute("href", light);
+                document.getElementById('page-style').setAttribute("href", light)
 
             }
         }

@@ -9,23 +9,24 @@
                name="new-task-description"
                placeholder="Описание"
                required
-               type="text" v-model="card_description">
+               type="text"
+               v-model="newCardDescription">
         <input class="new-task__submit material-icons" type="submit" value="add">
     </form>
 </template>
 
 <script>
-    import Card from "@/components/Card";
-    import Vue from 'vue';
-    import {eventBus} from "@/main";
+    import Card from "@/components/Card"
+    import Vue from 'vue'
+    import {eventBus} from "@/main"
 
-    let made_cards = 3;
+    let made_cards = 3
 
     export default {
         name: "Add",
         data: function () {
             return {
-                card_description: ""
+                newCardDescription: ""
             }
         },
         methods: {
@@ -36,14 +37,14 @@
                 const instance = new componentClass({
                     propsData: {
                         id: made_cards.toString(),
-                        cardDescription: this.card_description,
+                        cardDescription: this.newCardDescription,
                         executor: 'Я'
                     }
                 });
 
                 instance.$mount()
                 document.getElementById('board-1').appendChild(instance.$el)
-                this.card_description = ""
+                this.newCardDescription = ""
 
                 eventBus.$emit('makeCount')
             }

@@ -9,7 +9,19 @@
         <h2 class="task-card__header">Ответственный</h2>
         <span class="task-card__info">{{computedExecutor}}</span>
         <div class="control-panel">
-            <button class="control-panel__button material-icons" onclick="PopUpShow()">create
+            <button class="control-panel__button material-icons"
+                    onclick="
+                    console.log(this.parentNode.parentNode.parentNode.id,
+                    this.computedCardDescription,
+                    this.computedExecutor,
+                    this.computedStartTime,
+                    this.computedFinishTime)
+                    PopUpShow(this.parentNode.parentNode.parentNode.id,
+                    this.computedCardDescription,
+                    this.computedExecutor,
+                    this.computedStartTime,
+                    this.computedFinishTime)">
+                create
             </button>
             <button class="control-panel__button material-icons" v-on:click="changeBoard(id)">done</button>
             <button class="control-panel__button material-icons" v-on:click="removeCard(id)">clear</button>
@@ -18,6 +30,7 @@
 </template>
 
 <script>
+    import Redact from "@/components/Redact"
     import {eventBus} from "@/main";
 
     export default {
@@ -27,6 +40,7 @@
             return {
                 computedCardDescription: this.cardDescription,
                 computedStartTime: this.startTime,
+                computedFinishTime: '',
                 computedWastedTime: this.wastedTime,
                 computedExecutor: this.executor,
             };
@@ -81,8 +95,8 @@
 
                     switch (minutes) {
                         case 0:
-                           answer = 'Меньше минуты'
-                           break
+                            answer = 'Меньше минуты'
+                            break
                         case (minutes > 59):
                             minutes = wasted % (1000 * 60)
                             answer = hours + 'Часов: ' + hours + ', минут: ' + minutes
@@ -92,8 +106,12 @@
                             break
                     }
 
+                    this.computedFinishTime = finish
                     this.computedWastedTime = answer
                 }
+            });
+            eventBus.$on('applyChanges', () => {
+                this.computedCardDescription = Redact.changes.updatedCardDescription
             })
         },
         methods: {
@@ -118,6 +136,9 @@
 
                 eventBus.$emit('makeCount')
             },
+            popUpShow: function () {
+                eventBus.$emit('show')
+            }
         }
     }
 </script>

@@ -23,6 +23,7 @@
                 e.target.appendChild(card);
 
                 eventBus.$emit('needTime')
+                eventBus.$emit('done')
                 eventBus.$emit('makeCount')
             }
         }
