@@ -12,26 +12,21 @@
         </Add>
         <article class="kanban">
             <section class="board board_plan">
-                <h1 class="board__title" @click="count('board-1')">План {{this.val}}</h1>
+                <h1 class="board__title">План: {{quantity.for_board_1}}</h1>
                 <Board class="tasks_plan" id="board-1">
                     <Card id="1"></Card>
                     <Card id="2"></Card>
-
                 </Board>
             </section>
 
             <section class="board board_in-work">
-                <h1 class="board__title">В работе (1)</h1>
-                <Board class="tasks_plan" id="board-2">
-                    <!--                    <Card id="2"></Card>-->
-                </Board>
+                <h1 class="board__title">В работе: {{quantity.for_board_2}}</h1>
+                <Board class="tasks_plan" id="board-2"></Board>
             </section>
 
             <section class="board board_ready">
-                <h1 class="board__title">Готово (1)</h1>
-                <Board class="tasks_plan" id="board-3">
-                    <!--                    <Card id="3"></Card>-->
-                </Board>
+                <h1 class="board__title">Готово: {{quantity.for_board_3}}</h1>
+                <Board class="tasks_plan" id="board-3"></Board>
             </section>
         </article>
     </main>
@@ -41,6 +36,7 @@
     import Board from "@/components/Board";
     import Card from "@/components/Card";
     import Add from "@/components/Add";
+    import {eventBus} from "@/main";
 
 
     export default {
@@ -52,18 +48,26 @@
         },
         data: function () {
             return {
-                lee: document.getElementById("board_1").children.length,
-                val: ""
+                quantity: {
+                    for_board_1: 2,
+                    for_board_2: 0,
+                    for_board_3: 0,
+                }
             };
+        },
+        created() {
+            eventBus.$on('makeCount', () => {
+                this.countAll()
+            })
         },
         methods: {
             count: function (board_id) {
-                var a = document.getElementById(board_id).childElementCount
-                console.log(a)
-
-
-                this.val = a;
-                console.log(this.val)
+                return document.getElementById(board_id).children.length
+            },
+            countAll: function () {
+                this.quantity.for_board_1 = this.count("board-1");
+                this.quantity.for_board_2 = this.count("board-2");
+                this.quantity.for_board_3 = this.count("board-3");
             }
         }
     }

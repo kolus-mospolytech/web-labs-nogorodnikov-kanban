@@ -17,6 +17,7 @@
 <script>
     import Card from "@/components/Card";
     import Vue from 'vue';
+    import {eventBus} from "@/main";
 
     let made_cards = 3;
 
@@ -30,6 +31,7 @@
         methods: {
             addCard: function () {
                 made_cards++;
+
                 const componentClass = Vue.extend(Card);
                 const instance = new componentClass({
                     propsData: {
@@ -38,9 +40,12 @@
                         executor: 'Я'
                     }
                 });
+
                 instance.$mount()
                 document.getElementById('board-1').appendChild(instance.$el)
                 this.card_description = ""
+
+                eventBus.$emit('makeCount')
             }
         },
     }

@@ -18,27 +18,11 @@
 </template>
 
 <script>
+    import {eventBus} from "@/main";
+
     export default {
         name: "Card",
         props: ['id', 'cardDescription', 'startTime', 'durationTime', 'executor'],
-        data: function () {
-            return {
-                cardsData: [
-                    {
-                        cardDescription: "gunga",
-                        startTime: "",
-                        durationTime: "",
-                        executor: "Le gunga"
-                    },
-                    {
-                        cardDescription: "ginga",
-                        startTime: "",
-                        durationTime: "",
-                        executor: "Le ginga"
-                    },
-                ]
-            };
-        },
         methods: {
             dragStart: event => {
                 const target = event.target;
@@ -51,9 +35,13 @@
                 const board_num = board_id.slice(board_id.length - 1)
 
                 document.getElementById(board_id.slice(0, - 1) + (parseInt(board_num) + 1)).appendChild(card);
+
+                eventBus.$emit('makeCount')
             },
             removeCard: function (card_id) {
                 document.getElementById(card_id).remove();
+
+                eventBus.$emit('makeCount')
             }
         }
     }
