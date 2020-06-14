@@ -20,7 +20,7 @@
     import Vue from 'vue'
     import {eventBus} from "@/main"
 
-    let made_cards = 3
+    let made_cards = 2
 
     export default {
         name: "Add",
@@ -31,16 +31,16 @@
         },
         methods: {
             addCard: function () {
-                made_cards++;
+                made_cards++
 
-                const componentClass = Vue.extend(Card);
+                const componentClass = Vue.extend(Card)
                 const instance = new componentClass({
                     propsData: {
                         id: made_cards.toString(),
                         cardDescription: this.newCardDescription,
                         executor: 'Я'
                     }
-                });
+                })
 
                 instance.$mount()
                 document.getElementById('board-1').appendChild(instance.$el)
@@ -48,6 +48,6 @@
 
                 eventBus.$emit('makeCount')
             }
-        },
+        }
     }
 </script>

@@ -7,8 +7,8 @@
                 <section class="board board_plan">
                     <h1 class="board__title">План: {{quantity.for_board_1}}</h1>
                     <Board class="tasks_plan" id="board-1">
-                        <Card id="1"></Card>
-                        <Card id="2"></Card>
+                        <Card id="1" cardDescription="Лорем" executor="Я"></Card>
+                        <Card id="2" cardDescription="Ипсум" executor="Я"></Card>
                     </Board>
                 </section>
 
@@ -29,11 +29,11 @@
 </template>
 
 <script>
-    import Board from "@/components/Board";
-    import Card from "@/components/Card";
-    import Add from "@/components/Add";
+    import Board from "@/components/Board"
+    import Card from "@/components/Card"
+    import Add from "@/components/Add"
     import Redact from "@/components/Redact"
-    import {eventBus} from "@/main";
+    import {eventBus} from "@/main"
 
 
     export default {
@@ -63,13 +63,10 @@
                 return document.getElementById(board_id).children.length
             },
             countAll: function () {
-                this.quantity.for_board_1 = this.count("board-1");
-                this.quantity.for_board_2 = this.count("board-2");
-                this.quantity.for_board_3 = this.count("board-3");
+                this.quantity.for_board_1 = this.count("board-1")
+                this.quantity.for_board_2 = this.count("board-2")
+                this.quantity.for_board_3 = this.count("board-3")
             }
         }
     }
 </script>
-
-<style>
-</style>

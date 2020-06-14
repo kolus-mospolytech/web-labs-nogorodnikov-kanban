@@ -6,21 +6,13 @@
         <span class="task-card__info">{{computedStartTime}}</span>
         <h2 class="task-card__header">Ушло времени</h2>
         <span class="task-card__info">{{computedWastedTime}}</span>
+        <span class="task-card__info" style="display: none">{{popUpFinishTime}}</span>
+        <span class="task-card__info" style="display: none">{{popUpStartDate}}</span>
         <h2 class="task-card__header">Ответственный</h2>
         <span class="task-card__info">{{computedExecutor}}</span>
         <div class="control-panel">
             <button class="control-panel__button material-icons"
-                    onclick="
-                    console.log(this.parentNode.parentNode.parentNode.id,
-                    this.computedCardDescription,
-                    this.computedExecutor,
-                    this.computedStartTime,
-                    this.computedFinishTime)
-                    PopUpShow(this.parentNode.parentNode.parentNode.id,
-                    this.computedCardDescription,
-                    this.computedExecutor,
-                    this.computedStartTime,
-                    this.computedFinishTime)">
+                    onclick="PopUpShow(this.parentNode.parentNode.parentNode.id, this.parentNode.parentNode.id)">
                 create
             </button>
             <button class="control-panel__button material-icons" v-on:click="changeBoard(id)">done</button>
@@ -30,18 +22,19 @@
 </template>
 
 <script>
-    import Redact from "@/components/Redact"
-    import {eventBus} from "@/main";
+    import Card from "@/components/Card"
+    import {eventBus} from "@/main"
 
     export default {
         name: "Card",
-        props: ['id', 'cardDescription', 'startTime', 'wastedTime', 'executor'],
+        props: ['id', 'cardDescription', 'executor'],
         data: function () {
             return {
                 computedCardDescription: this.cardDescription,
-                computedStartTime: this.startTime,
-                computedFinishTime: '',
-                computedWastedTime: this.wastedTime,
+                computedStartTime: '',
+                popUpFinishTime: '',
+                popUpStartDate: '',
+                computedWastedTime: '',
                 computedExecutor: this.executor,
             };
         },
@@ -55,30 +48,11 @@
                     this.computedStartTime = Math.floor(Date.now() / 1000)
                     const today = new Date()
 
-                    let minutes = today.getMinutes()
-                    let hours = today.getHours()
-                    let day = today.getDate()
-                    let month = today.getMonth() + 1
-                    const year = today.getFullYear()
+                    this.popUpStartDate = this.formatTime(today)
+                    this.computedStartTime = this.formatTimeReadable(this.formatTime(today))
 
-                    if (minutes < 10) {
-                        minutes = '0' + minutes
-                    }
-
-                    if (hours < 10) {
-                        hours = '0' + hours
-                    }
-
-                    if (day < 10) {
-                        day = '0' + day
-                    }
-
-                    if (month < 10) {
-                        month = '0' + month
-                    }
-                    this.computedStartTime = month + '.' + day + '.' + year + ', ' + hours + ':' + minutes
                 }
-            });
+            })
             eventBus.$on('done', () => {
                 const card = document.getElementById(this.id)
                 const board_id = card.parentNode.id
@@ -106,12 +80,46 @@
                             break
                     }
 
-                    this.computedFinishTime = finish
+                    this.popUpFinishTime = this.formatTime(finish)
                     this.computedWastedTime = answer
                 }
-            });
-            eventBus.$on('applyChanges', () => {
-                this.computedCardDescription = Redact.changes.updatedCardDescription
+            })
+            eventBus.$on('backToPlan', () => {
+                const card = document.getElementById(this.id)
+                const board_id = card.parentNode.id
+                const board_num = board_id.slice(board_id.length - 1)
+
+                if (board_num === '1') {
+                    this.computedStartTime = null
+                    this.popUpFinishTime = null
+                    this.popUpStartDate = null
+                    this.computedWastedTime = null
+                }
+            })
+            eventBus.$on('applyChanges', function (card_id) {
+                const card = document.getElementById(card_id)
+                const card_elements = card.children
+                const card_description = document.getElementById('task-description').value
+                const start_time = document.getElementById('task-start').value
+                const executor = document.getElementById('in-charge').value
+                const status = document.getElementById('task-status').value
+
+                if (card_description)
+                    card_elements[1].innerHTML = card_description
+                if (start_time)
+                    card_elements[3].innerHTML = Card.methods.formatTimeReadable(start_time)
+                if (executor)
+                    card_elements[9].innerHTML = executor
+                if (card.parentNode.id !== status) {
+                    document.getElementById(status).appendChild(card)
+
+                    eventBus.$emit('needTime')
+                    eventBus.$emit('done')
+                    eventBus.$emit('backToPlan')
+                    eventBus.$emit('makeCount')
+
+
+                }
             })
         },
         methods: {
@@ -129,6 +137,7 @@
 
                 eventBus.$emit('needTime')
                 eventBus.$emit('done')
+                eventBus.$emit('backToPlan')
                 eventBus.$emit('makeCount')
             },
             removeCard: function (card_id) {
@@ -136,8 +145,33 @@
 
                 eventBus.$emit('makeCount')
             },
-            popUpShow: function () {
-                eventBus.$emit('show')
+            formatTime: function (dateStamp) {
+                let minutes = dateStamp.getMinutes()
+                let hours = dateStamp.getHours()
+                let day = dateStamp.getDate()
+                let month = dateStamp.getMonth() + 1
+                const year = dateStamp.getFullYear()
+
+                if (minutes < 10) {
+                    minutes = '0' + minutes
+                }
+
+                if (hours < 10) {
+                    hours = '0' + hours
+                }
+
+                if (day < 10) {
+                    day = '0' + day
+                }
+
+                if (month < 10) {
+                    month = '0' + month
+                }
+
+                return year + '-' + month + '-' + day + 'T' + hours + ':' + minutes
+            },
+            formatTimeReadable(dateString) {
+                return dateString.replace('-', '.').replace('-', '.').replace('T', ', ')
             }
         }
     }
